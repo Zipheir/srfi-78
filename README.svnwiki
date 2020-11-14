@@ -35,7 +35,7 @@ This statement runs the variable {{e}} through {0..99} and for each binding defi
 The specification of bindings to report, {{(e x)}} in the
 example, is optional but very informative.
 ==== Other features of this SRFI are:
-* A way to specify a different equality predicate (default is equal?).
+* A way to specify a different equality predicate (default is {{equal?}}).
 * Controlling the amount of reporting being printed.
 * Switching off the execution and reporting of checks entirely.
 * Retrieving a boolean if all checks have been executed and passed.
@@ -54,7 +54,7 @@ Neil Van Dyke's Testeez library [3] is very close in spirit to this SRFI. In Tes
  * An effort is made to print closed Scheme expressions, i.e. expressions that can directly be copy/pasted into a REPL for further analysis (e.g. the let expression in the abstract).
  * By default the checks report both correct and failed checks. However, it is possible to reduce the output---or even to switch off the execution of checks. It has turned out useful to be able to run only some subset checks for the features currently under development. This can be done by changing the reporting mode between differnt sections.
  * The global state (correct/failed count) is not made available to the user program. This reduces the dependencies between different checks because it is not possible to use the state.
- * Ocassionally, it is useful to check that a certain expression does *not* yield an ordinary result but raises an error. However, R5RS [4] does not specify the mechanism by which this occurs (e.g. raising exception, breaking into a REPL, aborting the program, etc.). For this reason, this SRFI is restricted to the case that the checked expressions evaluate normally.
+ * Occasionally, it is useful to check that a certain expression does *not* yield an ordinary result but raises an error. However, R5RS [4] does not specify the mechanism by which this occurs (e.g. raising exception, breaking into a REPL, aborting the program, etc.). For this reason, this SRFI is restricted to the case that the checked expressions evaluate normally.
  * Though usually I am very much in favor of strictly prefix syntax, for this SRFI I make an exception because the infix "=>" syntax is widely used and intuitive.
 === Specification
 ==== check
