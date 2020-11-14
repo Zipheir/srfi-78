@@ -56,34 +56,13 @@ example, is optional but very informative.
 *** For more information see:
 [[https://srfi.schemers.org/srfi-78/][SRFI 78: Lightweight testing]]
 ** Rationale
-The mechanism defined in this SRFI should be available in
-every Scheme system because it has already proven useful
-for interactive development---of SRFIs.
+The mechanism defined in this SRFI should be available in every Scheme system because it has already proven useful for interactive development---of SRFIs.
 
-Although it is extremely straight-forward, the origin of the
-particular mechanism described here is the 'examples.scm' file
-accompanying the reference implementation of SRFI 42.
-The same mechanism has been reimplemented for the reference
-implementation of SRFI 67, and a simplified version is yet
-again found in the reference implementation of SRFI 77.
+Although it is extremely straight-forward, the origin of the particular mechanism described here is the 'examples.scm' file accompanying the reference implementation of SRFI 42. The same mechanism has been reimplemented for the reference implementation of SRFI 67, and a simplified version is yet again found in the reference implementation of SRFI 77.
 
-The mechanism in this SRFI does not replace more sophisticated
-approaches to unit testing, like SRFI 64 [1] or SchemeUnit [2].
-These systems provide more control of the testing, separate
-the definition of a test, its execution, and its reports, and
-provide several other features.
+The mechanism in this SRFI does not replace more sophisticated approaches to unit testing, like SRFI 64 [1] or SchemeUnit [2]. These systems provide more control of the testing, separate the definition of a test, its execution, and its reports, and provide several other features.
 
-Neil Van Dyke's Testeez library [3] is very close in spirit
-to this SRFI. In Testeez, tests are disabled by (re-)defining a
-macro. The advantage of this method is that the code for the
-test cases can be removed entirely, and hence even the dependency
-on the Testeez library. This SRFI on the other hand, uses a
-Scheme conditional (COND, IF) to prevent execution of the
-testing code. This method is more dynamic but retains dead
-testing code, unless a compiler and a module system are used
-to apply constant folding and dead code elimination. The only
-major addition in SRFI over Testeez is the comprehension for
-formulating parametric tests.
+Neil Van Dyke's Testeez library [3] is very close in spirit to this SRFI. In Testeez, tests are disabled by (re-)defining a macro. The advantage of this method is that the code for the test cases can be removed entirely, and hence even the dependency on the Testeez library. This SRFI on the other hand, uses a Scheme conditional (COND, IF) to prevent execution of the testing code. This method is more dynamic but retains dead testing code, unless a compiler and a module system are used to apply constant folding and dead code elimination. The only major addition in SRFI over Testeez is the comprehension for formulating parametric tests.
 *** Design considerations for this SRFI include the following:
  * Reporting is human-readable and as specific as possible, i.e. not just "assertion failed" but the expression with actual and expected value, and if possibly the relevant part of the bindings environment.
  * An effort is made to print closed Scheme expressions, i.e. expressions that can directly be copy/pasted into a REPL for further analysis (e.g. the let expression in the abstract).
@@ -95,37 +74,25 @@ formulating parametric tests.
 *** check
 (check <expr> (=> <equal>) <expected>)                                   MACRO
 (check <expr>  =>          <expected>)
-   evaluates <expr> and compares the value to the value
-   of <expected> using the predicate <equal>, which is
-   equal? when omitted. Then a report is printed according
-   to the current mode setting (see below) and the outcome
-   is recorded in a global state to be used in check-report.
-      The precise order of evaluation is that first <equal>
-   and <expected> are evaluated (in unspecified order) and
-   then <expr> is evaluated.
-   Example: (check (+ 1 1) => 2)
+
+evaluates <expr> and compares the value to the value of <expected> using the predicate <equal>, which is equal? when omitted. Then a report is printed according to the current mode setting (see below) and the outcome is recorded in a global state to be used in check-report.
+
+The precise order of evaluation is that first <equal> and <expected> are evaluated (in unspecified order) and then <expr> is evaluated. Example: (check (+ 1 1) => 2)
 *** check-ec
 (check-ec <qualifier>^* <expr> (=> <equal>) <expected> (<argument>^*))   MACRO
 (check-ec <qualifier>^* <expr>  =>          <expected> (<argument>^*))
 (check-ec <qualifier>^* <expr> (=> <equal>) <expected>)
 (check-ec <qualifier>^* <expr>  =>          <expected>)
-   an eager comprehension for executing a parametric set of checks.
-      Enumerates the sequence of bindings specified by <qualifier>^*.
-   For each binding evaluates <equal> and <expected> in unspecified
-   order. Then evalues <expr> and compares the value obtained to the
-   value of <expected> using the value of <equal> as predicate, which
-   is equal? when omitted.
-      The comprehension stops after the first failed check, if there
-   is any. Then a report is printed according to the current mode
-   setting (see below) and the outcome is recorded in a global state
-   to be used in check-report. The entire check-ec counts as a single
-   check.
-      In case the check fails <argument>^* is used for constructing an
-   informative message with the argument values. Use <argument>^* to
-   list the relevant free variables of <expr> (see examples) that you
-   want to have printed.
-      A <qualifier> is any qualifier of an eager comprehension as
-   specified in [[https://srfi.schemers.org/srfi-42][SRFI 42]] [1].
+
+an eager comprehension for executing a parametric set of checks.
+
+Enumerates the sequence of bindings specified by <qualifier>^*. For each binding evaluates <equal> and <expected> in unspecified order. Then evalues <expr> and compares the value obtained to the value of <expected> using the value of <equal> as predicate, which is equal? when omitted.
+
+The comprehension stops after the first failed check, if there is any. Then a report is printed according to the current mode setting (see below) and the outcome is recorded in a global state to be used in check-report. The entire check-ec counts as a single check.
+
+In case the check fails <argument>^* is used for constructing an informative message with the argument values. Use <argument>^* to list the relevant free variables of <expr> (see examples) that you want to have printed.
+
+A <qualifier> is any qualifier of an eager comprehension as specified in [[https://srfi.schemers.org/srfi-42][SRFI 42]] [1].
 
    Examples:
      (check-ec (: e 100) (positive? (expt 2 e)) => #t (e)) ; fails on fixnums
@@ -135,31 +102,28 @@ formulating parametric tests.
                (x y z)) ; passes with 10^3 cases checked
 *** check-report
 (check-report)                                                     PROCEDURE
-   prints a summary and the first failed check, if there is any,
-   depending on the current mode settings.
+
+prints a summary and the first failed check, if there is any, depending on the current mode settings.
 *** check-set-mode!
 (check-set-mode! mode)                                             PROCEDURE
-   sets the current mode to mode, which must be a symbol in
-   '(off summary report-failed report), default is 'report.
-   The mode symbols have the following meaning:
-     off:           do not execute any of the checks
-     summary:       print only summary in (check-report) and nothing else
-     report-failed: report failed checks when they happen, and in summary
-     report:        report every example executed
-   Note that you can change the mode at any time, and that check,
-   check-ec and check-report use the current value.
+
+sets the current mode to mode, which must be a symbol in '(off summary report-failed report), default is 'report.
+**** The mode symbols have the following meaning:
+ * off:           do not execute any of the checks
+ * summary:       print only summary in (check-report) and nothing else
+ * report-failed: report failed checks when they happen, and in summary
+ * report:        report every example executed
+**** Note that you can change the mode at any time, and that check, check-ec and check-report use the current value.
 *** check-reset!
 (check-reset!)                                                     PROCEDURE
-   resets the global state (counters of correct/failed examples)
-   to the state immediately after loading the module for the
-   first time, i.e. no checks have been executed.
+
+resets the global state (counters of correct/failed examples) to the state immediately after loading the module for the first time, i.e. no checks have been executed.
 *** check-passed?
 (check-passed? expected-total-count)                               PROCEDURE
-   #t if there were no failed checks and expected-total-count
-   correct checks, #f otherwise.
-     Rationale: This procedure can be used in automatized
-   tests by terminating a test program with the statement
-   (exit (if (check-passed? <n>) 0 1)).
+
+#t if there were no failed checks and expected-total-count correct checks, #f otherwise.
+
+Rationale: This procedure can be used in automatized tests by terminating a test program with the statement (exit (if (check-passed? <n>) 0 1)).
 ** References
 [1] SRFI 64 by Per Bothner: A Scheme API for test suites. January 2005.
     http://srfi.schemers.org/srfi-64
