@@ -61,9 +61,9 @@ Neil Van Dyke's Testeez library [3] is very close in spirit to this SRFI. In Tes
 (check <expr> (=> <equal>) <expected>)                                   MACRO
 (check <expr>  =>          <expected>)
 
-evaluates <expr> and compares the value to the value of <expected> using the predicate <equal>, which is equal? when omitted. Then a report is printed according to the current mode setting (see below) and the outcome is recorded in a global state to be used in check-report.
+evaluates {{<expr>}} and compares the value to the value of {{<expected>}} using the predicate {{<equal>}}, which is equal? when omitted. Then a report is printed according to the current mode setting (see below) and the outcome is recorded in a global state to be used in check-report.
 
-The precise order of evaluation is that first <equal> and <expected> are evaluated (in unspecified order) and then <expr> is evaluated. Example: (check (+ 1 1) => 2)
+The precise order of evaluation is that first {{<equal>}} and {{<expected>}} are evaluated (in unspecified order) and then {{<expr>}} is evaluated. Example: (check (+ 1 1) => 2)
 ==== check-ec
 (check-ec <qualifier>^* <expr> (=> <equal>) <expected> (<argument>^*))   MACRO
 (check-ec <qualifier>^* <expr>  =>          <expected> (<argument>^*))
@@ -72,11 +72,11 @@ The precise order of evaluation is that first <equal> and <expected> are evaluat
 
 an eager comprehension for executing a parametric set of checks.
 
-Enumerates the sequence of bindings specified by <qualifier>^*. For each binding evaluates <equal> and <expected> in unspecified order. Then evaluates <expr> and compares the value obtained to the value of <expected> using the value of <equal> as predicate, which is equal? when omitted.
+Enumerates the sequence of bindings specified by {{<qualifier>^*}}. For each binding evaluates {{<equal>}} and {{<expected>}} in unspecified order. Then evaluates {{<expr>}} and compares the value obtained to the value of {{<expected>}} using the value of {{<equal>}} as predicate, which is equal? when omitted.
 
 The comprehension stops after the first failed check, if there is any. Then a report is printed according to the current mode setting (see below) and the outcome is recorded in a global state to be used in check-report. The entire check-ec counts as a single check.
 
-In case the check fails <argument>^* is used for constructing an informative message with the argument values. Use <argument>^* to list the relevant free variables of <expr> (see examples) that you want to have printed.
+In case the check fails <argument>^* is used for constructing an informative message with the argument values. Use <argument>^* to list the relevant free variables of {{<expr>}} (see examples) that you want to have printed.
 
 A <qualifier> is any qualifier of an eager comprehension as specified in [[https://srfi.schemers.org/srfi-42|SRFI 42]] [1].
 ===== Examples:
