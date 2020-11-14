@@ -58,17 +58,23 @@ Neil Van Dyke's Testeez library [3] is very close in spirit to this SRFI. In Tes
  * Though usually I am very much in favor of strictly prefix syntax, for this SRFI I make an exception because the infix "=>" syntax is widely used and intuitive.
 === Specification
 ==== check
-(check <expr> (=> <equal>) <expected>)                                   MACRO
-(check <expr>  =>          <expected>)
+
+<macro>(check <expr> (=> <equal>) <expected>)</macro>
+
+<macro>(check <expr>  =>          <expected>)</macro>
 
 evaluates {{<expr>}} and compares the value to the value of {{<expected>}} using the predicate {{<equal>}}, which is {{equal?}} when omitted. Then a report is printed according to the current mode setting (see below) and the outcome is recorded in a global state to be used in {{check-report}}.
 
 The precise order of evaluation is that first {{<equal>}} and {{<expected>}} are evaluated (in unspecified order) and then {{<expr>}} is evaluated. Example: {{(check (+ 1 1) => 2)}}
 ==== check-ec
-(check-ec <qualifier>^* <expr> (=> <equal>) <expected> (<argument>^*))   MACRO
-(check-ec <qualifier>^* <expr>  =>          <expected> (<argument>^*))
-(check-ec <qualifier>^* <expr> (=> <equal>) <expected>)
-(check-ec <qualifier>^* <expr>  =>          <expected>)
+
+<macro>(check-ec <qualifier>^* <expr> (=> <equal>) <expected> (<argument>^*))</macro>
+
+<macro>(check-ec <qualifier>^* <expr>  =>          <expected> (<argument>^*))</macro>
+
+<macro>(check-ec <qualifier>^* <expr> (=> <equal>) <expected>)</macro>
+
+<macro>(check-ec <qualifier>^* <expr>  =>          <expected>)</macro>
 
 an eager comprehension for executing a parametric set of checks.
 
@@ -88,11 +94,13 @@ A {{<qualifier>}} is any qualifier of an eager comprehension as specified in [[h
           (x y z)) ; passes with 10^3 cases checked
 </enscript>
 ==== check-report
-(check-report)                                                     PROCEDURE
+
+<procedure>(check-report)</procedure>
 
 prints a summary and the first failed {{check}}, if there is any, depending on the current mode settings.
 ==== check-set-mode!
-(check-set-mode! mode)                                             PROCEDURE
+
+<procedure>(check-set-mode! mode)</procedure>
 
 sets the current mode to mode, which must be a symbol in '(off summary report-failed report), default is 'report.
 ===== The mode symbols have the following meaning:
@@ -102,11 +110,13 @@ sets the current mode to mode, which must be a symbol in '(off summary report-fa
 * report:        report every example executed
 ===== Note that you can change the mode at any time, and that {{check}}, {{check-ec}} and {{check-report}} use the current value.
 ==== check-reset!
-(check-reset!)                                                     PROCEDURE
+
+<procedure>(check-reset!)</procedure>
 
 resets the global state (counters of correct/failed examples) to the state immediately after loading the module for the first time, i.e. no checks have been executed.
 ==== check-passed?
-(check-passed? expected-total-count)                               PROCEDURE
+
+<procedure>(check-passed? expected-total-count)</procedure>
 
 {{#t}} if there were no failed checks and expected-total-count correct checks, {{#f}} otherwise.
 
