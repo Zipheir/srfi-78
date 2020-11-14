@@ -97,7 +97,7 @@ prints a summary and the first failed {{check}}, if there is any, depending on t
 sets the current mode to mode, which must be a symbol in '(off summary report-failed report), default is 'report.
 ===== The mode symbols have the following meaning:
 * off:           do not execute any of the checks
-* summary:       print only summary in (check-report) and nothing else
+* summary:       print only summary in {{(check-report)}} and nothing else
 * report-failed: report failed checks when they happen, and in summary
 * report:        report every example executed
 ===== Note that you can change the mode at any time, and that {{check}}, {{check-ec}} and {{check-report}} use the current value.
