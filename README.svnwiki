@@ -37,7 +37,7 @@ example, is optional but very informative.
 ==== Other features of this SRFI are:
 * A way to specify a different equality predicate (default is equal?).
 * Controlling the amount of reporting being printed.
-* Switching off the execution and reporting of checks entriely.
+* Switching off the execution and reporting of checks entirely.
 * Retrieving a boolean if all checks have been executed and passed.
 ==== For more information see:
 [[https://srfi.schemers.org/srfi-78/|SRFI 78: Lightweight testing]]
@@ -72,7 +72,7 @@ The precise order of evaluation is that first <equal> and <expected> are evaluat
 
 an eager comprehension for executing a parametric set of checks.
 
-Enumerates the sequence of bindings specified by <qualifier>^*. For each binding evaluates <equal> and <expected> in unspecified order. Then evalues <expr> and compares the value obtained to the value of <expected> using the value of <equal> as predicate, which is equal? when omitted.
+Enumerates the sequence of bindings specified by <qualifier>^*. For each binding evaluates <equal> and <expected> in unspecified order. Then evaluates <expr> and compares the value obtained to the value of <expected> using the value of <equal> as predicate, which is equal? when omitted.
 
 The comprehension stops after the first failed check, if there is any. Then a report is printed according to the current mode setting (see below) and the outcome is recorded in a global state to be used in check-report. The entire check-ec counts as a single check.
 
