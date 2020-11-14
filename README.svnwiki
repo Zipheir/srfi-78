@@ -102,7 +102,7 @@ prints a summary and the first failed {{check}}, if there is any, depending on t
 
 <procedure>(check-set-mode! mode)</procedure>
 
-sets the current mode to mode, which must be a symbol in '(off summary report-failed report), default is 'report.
+sets the current mode to {{mode}}, which must be a symbol in {{'(off summary report-failed report)}}, default is {{'report}}.
 ===== The mode symbols have the following meaning:
 * off:           do not execute any of the checks
 * summary:       print only summary in {{(check-report)}} and nothing else
