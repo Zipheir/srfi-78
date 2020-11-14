@@ -25,7 +25,7 @@ In addition to the simple test above, it is also possible to execute a parametri
           (= (+ x 1) x) => #f (e x))
 </enscript>
 
-This statement runs the variable {{e}} through {0..99} and for each binding defines {{x}} as {{(expt 2.0 e)}}. Then it is checked if {{(+ x 1)}} is equal to x, and it is expected that this is not the case (i.e. expected value is {{#f}}). The trailing {{(e x)}} tells the reporting mechanism to print the values of both {{e}} and {{x}} in case of a failed {{check}}. The output could look like this:
+This statement runs the variable {{e}} through {0..99} and for each binding defines {{x}} as {{(expt 2.0 e)}}. Then it is checked if {{(+ x 1)}} is equal to {{x}}, and it is expected that this is not the case (i.e. expected value is {{#f}}). The trailing {{(e x)}} tells the reporting mechanism to print the values of both {{e}} and {{x}} in case of a failed {{check}}. The output could look like this:
 
 <enscript highlight="scheme">
 (let ((e 53) (x 9007199254740992.0)) (= (+ x 1) x)) => #t ; *** failed ***
@@ -48,7 +48,7 @@ Although it is extremely straight-forward, the origin of the particular mechanis
 
 The mechanism in this SRFI does not replace more sophisticated approaches to unit testing, like SRFI 64 [1] or SchemeUnit [2]. These systems provide more control of the testing, separate the definition of a test, its execution, and its reports, and provide several other features.
 
-Neil Van Dyke's Testeez library [3] is very close in spirit to this SRFI. In Testeez, tests are disabled by (re-)defining a macro. The advantage of this method is that the code for the test cases can be removed entirely, and hence even the dependency on the Testeez library. This SRFI on the other hand, uses a Scheme conditional (COND, IF) to prevent execution of the testing code. This method is more dynamic but retains dead testing code, unless a compiler and a module system are used to apply constant folding and dead code elimination. The only major addition in SRFI over Testeez is the comprehension for formulating parametric tests.
+Neil Van Dyke's Testeez library [3] is very close in spirit to this SRFI. In Testeez, tests are disabled by (re-)defining a macro. The advantage of this method is that the code for the test cases can be removed entirely, and hence even the dependency on the Testeez library. This SRFI on the other hand, uses a Scheme conditional ({{COND}}, {{IF}}) to prevent execution of the testing code. This method is more dynamic but retains dead testing code, unless a compiler and a module system are used to apply constant folding and dead code elimination. The only major addition in SRFI over Testeez is the comprehension for formulating parametric tests.
 ==== Design considerations for this SRFI include the following:
  * Reporting is human-readable and as specific as possible, i.e. not just "assertion failed" but the expression with actual and expected value, and if possibly the relevant part of the bindings environment.
  * An effort is made to print closed Scheme expressions, i.e. expressions that can directly be copy/pasted into a REPL for further analysis (e.g. the let expression in the abstract).
@@ -120,7 +120,7 @@ resets the global state (counters of correct/failed examples) to the state immed
 
 {{#t}} if there were no failed checks and expected-total-count correct checks, {{#f}} otherwise.
 
-Rationale: This procedure can be used in automatized tests by terminating a test program with the statement (exit (if (check-passed? <n>) 0 1)).
+Rationale: This procedure can be used in automatized tests by terminating a test program with the statement {{(exit (if (check-passed? <n>) 0 1))}}.
 === References
 * [1] [[http://srfi.schemers.org/srfi-64|SRFI 64]] by Per Bothner: A Scheme API for test suites. January 2005.
 * [2] Noel Welsh: [[http://schematics.sourceforge.net/schemeunit.html|SchemeUnit]]. February 2003.
