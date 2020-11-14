@@ -15,7 +15,7 @@ evaluates the expression {{(+ 1 1)}} and compares the result with the expected r
 ; expected result: 3
 </enscript>
 
-Moreover, the outcome of any executed check is recorded in a global state counting the number of correct and failed checks and storing the first failed check. At the end of a file, or at any other point, the user can print a summary.
+Moreover, the outcome of any executed {{check}} is recorded in a global state counting the number of correct and failed checks and storing the first failed {{check}}. At the end of a file, or at any other point, the user can print a summary.
 
 In addition to the simple test above, it is also possible to execute a parametric sequence of checks. Syntactically, this takes the form of an eager comprehension in the sense of [[https://srfi.schemers.org/srfi-42|SRFI 42]] [5]. For example,
 
@@ -25,7 +25,7 @@ In addition to the simple test above, it is also possible to execute a parametri
           (= (+ x 1) x) => #f (e x))
 </enscript>
 
-This statement runs the variable {{e}} through {0..99} and for each binding defines {{x}} as {{(expt 2.0 e)}}. Then it is checked if {{(+ x 1)}} is equal to x, and it is expected that this is not the case (i.e. expected value is {{#f}}). The trailing {{(e x)}} tells the reporting mechanism to print the values of both {{e}} and {{x}} in case of a failed check. The output could look like this:
+This statement runs the variable {{e}} through {0..99} and for each binding defines {{x}} as {{(expt 2.0 e)}}. Then it is checked if {{(+ x 1)}} is equal to x, and it is expected that this is not the case (i.e. expected value is {{#f}}). The trailing {{(e x)}} tells the reporting mechanism to print the values of both {{e}} and {{x}} in case of a failed {{check}}. The output could look like this:
 
 <enscript highlight="scheme">
 (let ((e 53) (x 9007199254740992.0)) (= (+ x 1) x)) => #t ; *** failed ***
@@ -76,7 +76,7 @@ Enumerates the sequence of bindings specified by {{<qualifier>^*}}. For each bin
 
 The comprehension stops after the first failed check, if there is any. Then a report is printed according to the current mode setting (see below) and the outcome is recorded in a global state to be used in check-report. The entire {{check-ec}} counts as a single check.
 
-In case the check fails <argument>^* is used for constructing an informative message with the argument values. Use <argument>^* to list the relevant free variables of {{<expr>}} (see examples) that you want to have printed.
+In case the {{check}} fails <argument>^* is used for constructing an informative message with the argument values. Use <argument>^* to list the relevant free variables of {{<expr>}} (see examples) that you want to have printed.
 
 A <qualifier> is any qualifier of an eager comprehension as specified in [[https://srfi.schemers.org/srfi-42|SRFI 42]] [1].
 ===== Examples:
@@ -90,7 +90,7 @@ A <qualifier> is any qualifier of an eager comprehension as specified in [[https
 ==== check-report
 (check-report)                                                     PROCEDURE
 
-prints a summary and the first failed check, if there is any, depending on the current mode settings.
+prints a summary and the first failed {{check}}, if there is any, depending on the current mode settings.
 ==== check-set-mode!
 (check-set-mode! mode)                                             PROCEDURE
 
@@ -100,7 +100,7 @@ sets the current mode to mode, which must be a symbol in '(off summary report-fa
 * summary:       print only summary in (check-report) and nothing else
 * report-failed: report failed checks when they happen, and in summary
 * report:        report every example executed
-===== Note that you can change the mode at any time, and that check, {{check-ec}} and check-report use the current value.
+===== Note that you can change the mode at any time, and that {{check}}, {{check-ec}} and check-report use the current value.
 ==== check-reset!
 (check-reset!)                                                     PROCEDURE
 
