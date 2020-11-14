@@ -35,10 +35,10 @@ This statement runs the variable e through {0..99} and for each binding defines 
 The specification of bindings to report, (e x) in the
 example, is optional but very informative.
 ==== Other features of this SRFI are:
- * A way to specify a different equality predicate (default is equal?).
- * Controlling the amount of reporting being printed.
- * Switching off the execution and reporting of checks entriely.
- * Retrieving a boolean if all checks have been executed and passed.
+* A way to specify a different equality predicate (default is equal?).
+* Controlling the amount of reporting being printed.
+* Switching off the execution and reporting of checks entriely.
+* Retrieving a boolean if all checks have been executed and passed.
 ==== For more information see:
 [[https://srfi.schemers.org/srfi-78/|SRFI 78: Lightweight testing]]
 === Rationale
@@ -96,10 +96,10 @@ prints a summary and the first failed check, if there is any, depending on the c
 
 sets the current mode to mode, which must be a symbol in '(off summary report-failed report), default is 'report.
 ===== The mode symbols have the following meaning:
- * off:           do not execute any of the checks
- * summary:       print only summary in (check-report) and nothing else
- * report-failed: report failed checks when they happen, and in summary
- * report:        report every example executed
+* off:           do not execute any of the checks
+* summary:       print only summary in (check-report) and nothing else
+* report-failed: report failed checks when they happen, and in summary
+* report:        report every example executed
 ===== Note that you can change the mode at any time, and that check, check-ec and check-report use the current value.
 ==== check-reset!
 (check-reset!)                                                     PROCEDURE
@@ -112,14 +112,14 @@ resets the global state (counters of correct/failed examples) to the state immed
 
 Rationale: This procedure can be used in automatized tests by terminating a test program with the statement (exit (if (check-passed? <n>) 0 1)).
 === References
-==== [1] [[http://srfi.schemers.org/srfi-64|SRFI 64]] by Per Bothner: A Scheme API for test suites. January 2005.
-==== [2] Noel Welsh: [[http://schematics.sourceforge.net/schemeunit.html|SchemeUnit]]. February 2003.
-==== [3] Neil Van Dyke: [[http://www.neilvandyke.org/testeez|Testeez]], Lightweight Unit Test Mechanism for Scheme. May 2005.
-==== [4] [[http://www.schemers.org/Documents/Standards/R5RS/|Revised^5 Report on the Algorithmic Language Scheme]] (R5RS).
-==== [5] [[http://srfi.schemers.org/srfi-42|SRFI 42]] by Sebastian Egner: Eager Comprehensions.
+* [1] [[http://srfi.schemers.org/srfi-64|SRFI 64]] by Per Bothner: A Scheme API for test suites. January 2005.
+* [2] Noel Welsh: [[http://schematics.sourceforge.net/schemeunit.html|SchemeUnit]]. February 2003.
+* [3] Neil Van Dyke: [[http://www.neilvandyke.org/testeez|Testeez]], Lightweight Unit Test Mechanism for Scheme. May 2005.
+* [4] [[http://www.schemers.org/Documents/Standards/R5RS/|Revised^5 Report on the Algorithmic Language Scheme]] (R5RS).
+* [5] [[http://srfi.schemers.org/srfi-42|SRFI 42]] by Sebastian Egner: Eager Comprehensions.
 === Author
- * Sebastian.Egner@philips.com
- * Ported to Chicken Scheme 5 by Sergey Goldgaber
+* Sebastian.Egner@philips.com
+* Ported to Chicken Scheme 5 by Sergey Goldgaber
 === Copyright
 Copyright (C) Sebastian Egner (2005-2006). All Rights Reserved.
 
