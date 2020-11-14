@@ -1,4 +1,4 @@
-;;; srfi-5.egg -*- Scheme -*- vim: ft=scheme:
+;;; srfi-42.egg -*- Scheme -*- vim: ft=scheme:
 
 ((author "Sebastian.Egner@philips.com")
  (maintainer "Sergey Goldgaber")
