@@ -5,6 +5,6 @@
  (synopsis "SRFI-78: Lightweight testing")
  (version "0.1")
  (category testing)
- (test-dependencies test)
+ (dependencies srfi-42)
  (license "MIT")
  (components (extension srfi-78)))
