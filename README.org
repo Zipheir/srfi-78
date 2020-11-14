@@ -48,12 +48,13 @@ The output could look like this:
 
 The specification of bindings to report, (e x) in the
 example, is optional but very informative.
-
-Other features of this SRFI are:
+*** Other features of this SRFI are:
  * A way to specify a different equality predicate (default is equal?).
  * Controlling the amount of reporting being printed.
  * Switching off the execution and reporting of checks entriely.
  * Retrieving a boolean if all checks have been executed and passed.
+*** For more information see:
+[[https://srfi.schemers.org/srfi-78/][SRFI 78: Lightweight testing]]
 ** Rationale
 The mechanism defined in this SRFI should be available in
 every Scheme system because it has already proven useful
