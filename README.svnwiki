@@ -82,7 +82,7 @@ Enumerates the sequence of bindings specified by {{<qualifier>^*}}. For each bin
 
 The comprehension stops after the first failed check, if there is any. Then a report is printed according to the current mode setting (see below) and the outcome is recorded in a global state to be used in {{check-report}}. The entire {{check-ec}} counts as a single check.
 
-In case the {{check}} fails <argument>^* is used for constructing an informative message with the argument values. Use <argument>^* to list the relevant free variables of {{<expr>}} (see examples) that you want to have printed.
+In case the {{check}} fails {{<argument>^*}} is used for constructing an informative message with the argument values. Use {{<argument>^*}} to list the relevant free variables of {{<expr>}} (see examples) that you want to have printed.
 
 A {{<qualifier>}} is any qualifier of an eager comprehension as specified in [[https://srfi.schemers.org/srfi-42|SRFI 42]] [1].
 ===== Examples:
