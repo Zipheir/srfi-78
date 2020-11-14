@@ -92,6 +92,7 @@ formulating parametric tests.
  * Ocassionally, it is useful to check that a certain expression does *not* yield an ordinary result but raises an error. However, R5RS [4] does not specify the mechanism by which this occurs (e.g. raising exception, breaking into a REPL, aborting the program, etc.). For this reason, this SRFI is restricted to the case that the checked expressions evaluate normally.
  * Though usually I am very much in favor of strictly prefix syntax, for this SRFI I make an exception because the infix "=>" syntax is widely used and intuitive.
 ** Specification
+*** check
 (check <expr> (=> <equal>) <expected>)                                   MACRO
 (check <expr>  =>          <expected>)
    evaluates <expr> and compares the value to the value
@@ -103,7 +104,7 @@ formulating parametric tests.
    and <expected> are evaluated (in unspecified order) and
    then <expr> is evaluated.
    Example: (check (+ 1 1) => 2)
-
+*** check-ec
 (check-ec <qualifier>^* <expr> (=> <equal>) <expected> (<argument>^*))   MACRO
 (check-ec <qualifier>^* <expr>  =>          <expected> (<argument>^*))
 (check-ec <qualifier>^* <expr> (=> <equal>) <expected>)
@@ -132,11 +133,11 @@ formulating parametric tests.
      (check-ec (: x 10) (: y 10) (: z 10)
                (* x (+ y z)) => (+ (* x y) (* x z))
                (x y z)) ; passes with 10^3 cases checked
-
+*** check-report
 (check-report)                                                     PROCEDURE
    prints a summary and the first failed check, if there is any,
    depending on the current mode settings.
-
+*** check-set-mode!
 (check-set-mode! mode)                                             PROCEDURE
    sets the current mode to mode, which must be a symbol in
    '(off summary report-failed report), default is 'report.
@@ -147,12 +148,12 @@ formulating parametric tests.
      report:        report every example executed
    Note that you can change the mode at any time, and that check,
    check-ec and check-report use the current value.
-
+*** check-reset!
 (check-reset!)                                                     PROCEDURE
    resets the global state (counters of correct/failed examples)
    to the state immediately after loading the module for the
    first time, i.e. no checks have been executed.
-
+*** check-passed?
 (check-passed? expected-total-count)                               PROCEDURE
    #t if there were no failed checks and expected-total-count
    correct checks, #f otherwise.
