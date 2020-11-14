@@ -25,7 +25,7 @@ file, or at any other point, the user can print a summary.
 In addition to the simple test above, it is also possible
 to execute a parametric sequence of checks. Syntactically,
 this takes the form of an eager comprehension in the sense
-of [[https://srfi.schemers.org/srfi-42][SRFI 42]] [5]. For example,
+of [[https://srfi.schemers.org/srfi-42|SRFI 42]] [5]. For example,
 
 <enscript highlight="scheme">
 (check-ec (:range e 100)
@@ -54,7 +54,7 @@ example, is optional but very informative.
  * Switching off the execution and reporting of checks entriely.
  * Retrieving a boolean if all checks have been executed and passed.
 ==== For more information see:
-[[https://srfi.schemers.org/srfi-78/][SRFI 78: Lightweight testing]]
+[[https://srfi.schemers.org/srfi-78/|SRFI 78: Lightweight testing]]
 === Rationale
 The mechanism defined in this SRFI should be available in every Scheme system because it has already proven useful for interactive development---of SRFIs.
 
@@ -92,7 +92,7 @@ The comprehension stops after the first failed check, if there is any. Then a re
 
 In case the check fails <argument>^* is used for constructing an informative message with the argument values. Use <argument>^* to list the relevant free variables of <expr> (see examples) that you want to have printed.
 
-A <qualifier> is any qualifier of an eager comprehension as specified in [[https://srfi.schemers.org/srfi-42][SRFI 42]] [1].
+A <qualifier> is any qualifier of an eager comprehension as specified in [[https://srfi.schemers.org/srfi-42|SRFI 42]] [1].
 ===== Examples:
 <enscript highlight="scheme">
 (check-ec (: e 100) (positive? (expt 2 e)) => #t (e)) ; fails on fixnums
@@ -126,11 +126,11 @@ resets the global state (counters of correct/failed examples) to the state immed
 
 Rationale: This procedure can be used in automatized tests by terminating a test program with the statement (exit (if (check-passed? <n>) 0 1)).
 === References
-==== [1] [[http://srfi.schemers.org/srfi-64][SRFI 64]] by Per Bothner: A Scheme API for test suites. January 2005.
-==== [2] Noel Welsh: [[http://schematics.sourceforge.net/schemeunit.html][SchemeUnit]]. February 2003.
-==== [3] Neil Van Dyke: [[http://www.neilvandyke.org/testeez][Testeez]], Lightweight Unit Test Mechanism for Scheme. May 2005.
-==== [4] [[http://www.schemers.org/Documents/Standards/R5RS/][Revised^5 Report on the Algorithmic Language Scheme]] (R5RS).
-==== [5] [[http://srfi.schemers.org/srfi-42][SRFI 42]] by Sebastian Egner: Eager Comprehensions.
+==== [1] [[http://srfi.schemers.org/srfi-64|SRFI 64]] by Per Bothner: A Scheme API for test suites. January 2005.
+==== [2] Noel Welsh: [[http://schematics.sourceforge.net/schemeunit.html|SchemeUnit]]. February 2003.
+==== [3] Neil Van Dyke: [[http://www.neilvandyke.org/testeez|Testeez]], Lightweight Unit Test Mechanism for Scheme. May 2005.
+==== [4] [[http://www.schemers.org/Documents/Standards/R5RS/|Revised^5 Report on the Algorithmic Language Scheme]] (R5RS).
+==== [5] [[http://srfi.schemers.org/srfi-42|SRFI 42]] by Sebastian Egner: Eager Comprehensions.
 === Author
  * Sebastian.Egner@philips.com
  * Ported to Chicken Scheme 5 by Sergey Goldgaber
