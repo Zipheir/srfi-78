@@ -84,33 +84,13 @@ testing code, unless a compiler and a module system are used
 to apply constant folding and dead code elimination. The only
 major addition in SRFI over Testeez is the comprehension for
 formulating parametric tests.
-
-Design considerations for this SRFI include the following:
- * Reporting is human-readable and as specific as possible,
-  i.e. not just "assertion failed" but the expression with
-  actual and expected value, and if possibly the relevant
-  part of the bindings environment.
- * An effort is made to print closed Scheme expressions, i.e.
-  expressions that can directly be copy/pasted into a REPL
-  for further analysis (e.g. the let expression in the abstract).
- * By default the checks report both correct and failed checks.
-  However, it is possible to reduce the output---or even to
-  switch off the execution of checks. It has turned out useful
-  to be able to run only some subset checks for the features
-  currently under development. This can be done by changing
-  the reporting mode between differnt sections.
- * The global state (correct/failed count) is not made available
-  to the user program. This reduces the dependencies between
-  different checks because it is not possible to use the state.
- * Ocassionally, it is useful to check that a certain expression
-  does *not* yield an ordinary result but raises an error. However,
-  R5RS [4] does not specify the mechanism by which this occurs
-  (e.g. raising exception, breaking into a REPL, aborting the
-  program, etc.). For this reason, this SRFI is restricted to
-  the case that the checked expressions evaluate normally.
- * Though usually I am very much in favor of strictly prefix
-  syntax, for this SRFI I make an exception because the
-  infix "=>" syntax is widely used and intuitive.
+*** Design considerations for this SRFI include the following:
+ * Reporting is human-readable and as specific as possible, i.e. not just "assertion failed" but the expression with actual and expected value, and if possibly the relevant part of the bindings environment.
+ * An effort is made to print closed Scheme expressions, i.e. expressions that can directly be copy/pasted into a REPL for further analysis (e.g. the let expression in the abstract).
+ * By default the checks report both correct and failed checks. However, it is possible to reduce the output---or even to switch off the execution of checks. It has turned out useful to be able to run only some subset checks for the features currently under development. This can be done by changing the reporting mode between differnt sections.
+ * The global state (correct/failed count) is not made available to the user program. This reduces the dependencies between different checks because it is not possible to use the state.
+ * Ocassionally, it is useful to check that a certain expression does *not* yield an ordinary result but raises an error. However, R5RS [4] does not specify the mechanism by which this occurs (e.g. raising exception, breaking into a REPL, aborting the program, etc.). For this reason, this SRFI is restricted to the case that the checked expressions evaluate normally.
+ * Though usually I am very much in favor of strictly prefix syntax, for this SRFI I make an exception because the infix "=>" syntax is widely used and intuitive.
 ** Specification
 (check <expr> (=> <equal>) <expected>)                                   MACRO
 (check <expr>  =>          <expected>)
