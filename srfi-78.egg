@@ -1,0 +1,10 @@
+;;; srfi-5.egg -*- Scheme -*- vim: ft=scheme:
+
+((author "Sebastian.Egner@philips.com")
+ (maintainer "Sergey Goldgaber")
+ (synopsis "SRFI-78: Lightweight testing")
+ (version "0.1")
+ (category testing)
+ (test-dependencies test)
+ (license "MIT")
+ (components (extension srfi-78)))
