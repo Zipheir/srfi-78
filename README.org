@@ -125,21 +125,11 @@ resets the global state (counters of correct/failed examples) to the state immed
 
 Rationale: This procedure can be used in automatized tests by terminating a test program with the statement (exit (if (check-passed? <n>) 0 1)).
 ** References
-[1] SRFI 64 by Per Bothner: A Scheme API for test suites. January 2005.
-    http://srfi.schemers.org/srfi-64
-
-[2] Noel Welsh: SchemeUnit. February 2003.
-    http://schematics.sourceforge.net/schemeunit.html
-
-[3] Neil Van Dyke:
-    Testeez, Lightweight Unit Test Mechanism for Scheme. May 2005.
-    http://www.neilvandyke.org/testeez
-
-[4] Revised^5 Report on the Algorithmic Language Scheme (R5RS).
-    http://www.schemers.org/Documents/Standards/R5RS/
-
-[5] SRFI 42 by Sebastian Egner: Eager Comprehensions.
-    http://srfi.schemers.org/srfi-42
+*** [1] [[http://srfi.schemers.org/srfi-64][SRFI 64]] by Per Bothner: A Scheme API for test suites. January 2005.
+*** [2] Noel Welsh: [[http://schematics.sourceforge.net/schemeunit.html][SchemeUnit]]. February 2003.
+*** [3] Neil Van Dyke: [[http://www.neilvandyke.org/testeez][Testeez]], Lightweight Unit Test Mechanism for Scheme. May 2005.
+*** [4] [[http://www.schemers.org/Documents/Standards/R5RS/][Revised^5 Report on the Algorithmic Language Scheme]] (R5RS).
+*** [5] [[http://srfi.schemers.org/srfi-42][SRFI 42]] by Sebastian Egner: Eager Comprehensions.
 ** Author
  * Sebastian.Egner@philips.com
  * Ported to Chicken Scheme 5 by Sergey Goldgaber
