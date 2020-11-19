@@ -151,6 +151,7 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
 FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 DEALINGS IN THE SOFTWARE.
 === Version history
+* [[https://github.com/diamond-lizard/srfi-78/releases/tag/0.3|0.3]] - Fix for [[https://github.com/diamond-lizard/srfi-78/issues/8|issue 8]]
 * [[https://github.com/diamond-lizard/srfi-78/releases/tag/0.2|0.2]] - Fix for [[https://github.com/diamond-lizard/srfi-78/issues/7|issue 7]]
 * [[https://github.com/diamond-lizard/srfi-78/releases/tag/0.1|0.1]] - Ported to Chicken Scheme 5
 
