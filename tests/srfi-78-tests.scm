@@ -1,3 +1,8 @@
+;;============================================================================
+;;
+;; Start of: check--test-001
+;;
+
 (define (check--test-001)
   (parameterize ((current-output-port (open-output-string)))
     (check (+ 1 1) => 2)
@@ -15,6 +20,16 @@
    ""))
 
 (test check--test-001--expected-output (check--test-001))
+
+;;
+;; End of: check--test-001
+;;
+;;============================================================================
+
+;;============================================================================
+;;
+;; Start of: check-ec--test-001
+;;
 
 ;; The following test is expected to fail
 ;;
@@ -47,3 +62,8 @@
 (test
  check-ec--test-001-expected-output
  (check-ec--test-001))
+
+;;
+;; End of: check-ec--test-001
+;;
+;;============================================================================
