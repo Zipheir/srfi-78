@@ -14,6 +14,25 @@
 ;; (let ((e 53) (x 9007199254740992.0)) (= (+ x 1) x)) => #t ; *** failed ***
 ;;  ; expected result: #f
 ;;
-(check-ec (:range e 100)
-          (:let x (expt 2.0 e))
-          (= (+ x 1) x) => #f (e x))
+(define (check-ec--test-001)
+  (parameterize ((current-output-port (open-output-string)))
+    (check-ec (:range e 100)
+              (:let x (expt 2.0 e))
+              (= (+ x 1) x) => #f (e x))
+    (get-output-string (current-output-port))))
+
+(define check-ec--test-001-expected-output
+ (string-join
+  '("\n"
+    "(let ((e 53) (x 9007199254740992.0)) (= (+ x 1) x)) => #t"
+    " ; "
+    "*** failed ***"
+    "\n"
+    " ; "
+    "expected result: #f"
+    "\n")
+  ""))
+
+(test
+ check-ec--test-001-expected-output
+ (check-ec--test-001))

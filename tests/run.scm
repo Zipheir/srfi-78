@@ -5,5 +5,6 @@
 (import test)
 (import (chicken port))
 (import r7rs)
+(import srfi-13)
 
 (include "srfi-78-tests.scm")

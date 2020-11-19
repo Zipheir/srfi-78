@@ -6,6 +6,6 @@
  (version "0.1")
  (category testing)
  (dependencies srfi-42)
- (test-dependencies r7rs test)
+ (test-dependencies r7rs srfi-13 test)
  (license "MIT")
  (components (extension srfi-78)))
