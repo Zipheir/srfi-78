@@ -28,6 +28,37 @@
 
 ;;============================================================================
 ;;
+;; Start of: check--test-002
+;;
+
+(define (check--test-002)
+  (parameterize ((current-output-port (open-output-string)))
+    (check (+ 1 1) => 3)
+    (get-output-string (current-output-port))))
+
+(define check--test-002--expected-output
+  (string-join
+   '(
+     "\n"
+     "(+ 1 1) => 2"
+     " ; "
+     "*** failed ***"
+     "\n"
+     " ; "
+     "expected result: 3"
+     "\n"
+     )
+   ""))
+
+(test check--test-002--expected-output (check--test-002))
+
+;;
+;; End of: check--test-002
+;;
+;;============================================================================
+
+;;============================================================================
+;;
 ;; Start of: check-ec--test-001
 ;;
 
