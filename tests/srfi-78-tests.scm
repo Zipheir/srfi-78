@@ -98,3 +98,46 @@
 ;; End of: check-ec--test-001
 ;;
 ;;============================================================================
+
+;;============================================================================
+;;
+;; Start of: check-ec--test-002
+;;
+
+;; Per the SRFI-78 documentation, regarding this test it:
+;;
+;;   "fails on fixnums"
+;;
+;; However, on Chicken 5.2.0 it succeeds.
+;;
+;; After discussion in #chicken, it was decided that this test
+;; was not guaranteed to fail on any Scheme, and therefore it's
+;; not a valid test on Chicken.
+;;
+;; However, I'm keeping it here as documentation, and making
+;; its success pass the test instead of failing it.
+;;
+(define (check-ec--test-002)
+  (parameterize ((current-output-port (open-output-string)))
+    (check-ec (: e 100) (positive? (expt 2 e)) => #t (e))
+    (get-output-string (current-output-port))))
+
+(define check-ec--test-002-expected-output
+ (string-join
+  '("\n"
+    "(check-ec (: e 100) (positive? (expt 2 e)) (=> equal?) #t (e))"
+    " => "
+    "#<unspecified>"
+    " ; "
+    "correct (100 cases checked)"
+    "\n")
+  ""))
+
+(test
+ check-ec--test-002-expected-output
+ (check-ec--test-002))
+
+;;
+;; End of: check-ec--test-002
+;;
+;;============================================================================
