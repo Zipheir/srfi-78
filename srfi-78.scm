@@ -7,6 +7,12 @@
   (import srfi-42)
 
   (export
+   ;; Fix for Issue 7, "check:mode and check:proc are unbound"
+   ;;
+   ;;  https://github.com/diamond-lizard/srfi-78/issues/7
+   (check check:mode)
+   (check check:proc)
+
    check
    check-ec
    check-report
