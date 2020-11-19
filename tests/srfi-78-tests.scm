@@ -141,3 +141,38 @@
 ;; End of: check-ec--test-002
 ;;
 ;;============================================================================
+
+;;============================================================================
+;;
+;; Start of: check-ec--test-003
+;;
+
+;; Per the SRFI-78 documentation, this test is expected to fail
+
+(define (check-ec--test-003)
+  (parameterize ((current-output-port (open-output-string)))
+    (check-ec (: e 100) (:let x (expt 2.0 e)) (= (+ x 1) x) => #f (x))
+    (get-output-string (current-output-port))))
+
+(define check-ec--test-003-expected-output
+ (string-join
+  '("\n"
+    "(let ((x 9007199254740992.0)) (= (+ x 1) x))"
+    " => "
+    "#t"
+    " ; "
+    "*** failed ***"
+    "\n"
+    " ; "
+    "expected result: #f"
+    "\n")
+  ""))
+
+(test
+ check-ec--test-003-expected-output
+ (check-ec--test-003))
+
+;;
+;; End of: check-ec--test-003
+;;
+;;============================================================================
