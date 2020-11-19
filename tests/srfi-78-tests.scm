@@ -176,3 +176,43 @@
 ;; End of: check-ec--test-003
 ;;
 ;;============================================================================
+
+;;============================================================================
+;;
+;; Start of: check-ec--test-004
+;;
+
+;; Per the SRFI-78 documentation, this test:
+;;
+;;   "passes with 10^3 cases checked"
+
+(define (check-ec--test-004)
+  (parameterize ((current-output-port (open-output-string)))
+    (check-ec (: x 10) (: y 10) (: z 10)
+              (* x (+ y z)) => (+ (* x y) (* x z))
+              (x y z))
+    (get-output-string (current-output-port))))
+
+(define check-ec--test-004-expected-output
+ (string-join
+  '(
+    "\n"
+    "(check-ec (nested (: x 10) (: y 10) (: z 10)) (* x (+ y z)) (=> equal?)"
+    " "
+    "(+ (* x y) (* x z)) (x y z))"
+    " => "
+    "#<unspecified>"
+    " ; "
+    "correct (1000 cases checked)"
+    "\n"
+    )
+  ""))
+
+(test
+ check-ec--test-004-expected-output
+ (check-ec--test-004))
+
+;;
+;; End of: check-ec--test-004
+;;
+;;============================================================================
