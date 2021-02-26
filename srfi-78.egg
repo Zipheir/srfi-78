@@ -1,7 +1,7 @@
 ((author "Sebastian Egner")
  (maintainer "Wolfgang Corcoran-Mathe")
  (synopsis "SRFI-78: Lightweight testing")
- (version "0.1")
+ (version "0.5")
  (category testing)
  (dependencies srfi-42)
  (test-dependencies r7rs srfi-13 test)
