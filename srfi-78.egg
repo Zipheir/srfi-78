@@ -1,6 +1,4 @@
-;;; srfi-78.egg -*- Scheme -*- vim: ft=scheme:
-
-((author "Sebastian.Egner@philips.com")
+((author "Sebastian Egner")
  (maintainer "Wolfgang Corcoran-Mathe")
  (synopsis "SRFI-78: Lightweight testing")
  (version "0.1")
